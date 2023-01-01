@@ -3,9 +3,6 @@ package com.example.myapplication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.MenuItem
-import android.view.MenuItem.OnMenuItemClickListener
 import androidx.core.view.get
 import kotlinx.android.synthetic.main.activity_main.*
 import com.example.myapplication.databinding.ActivityMainBinding
@@ -24,7 +21,8 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setOnItemSelectedListener  {
                 when(it.itemId){
                     R.id.miHome -> startActivity( Intent(this, MainActivity::class.java))
-                    R.id.miProfile -> startActivity( Intent(this, AddPersonalActivity::class.java))
+                    R.id.miProfile -> startActivity( Intent(this, ViewPersonalActivity::class.java))
+                    R.id.fab -> startActivity( Intent(this, MainActivity::class.java))
                     R.id.miSearch -> startActivity( Intent(this, MainActivity::class.java))
                     R.id.miSettings -> startActivity( Intent(this, MainActivity::class.java))
                 }

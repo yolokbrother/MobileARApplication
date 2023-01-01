@@ -5,13 +5,10 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.Window
 import android.widget.Toast
 import androidx.core.view.get
 import com.example.myapplication.databinding.ActivityAddPersonalBinding
-import com.example.myapplication.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -29,8 +26,8 @@ class AddPersonalActivity : AppCompatActivity() {
     private lateinit var dialog : Dialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         //bottom navigation
+        super.onCreate(savedInstanceState)
         binding = ActivityAddPersonalBinding.inflate(layoutInflater)
         setContentView(binding.root)
         bottomNavigationView.background = null
@@ -38,7 +35,8 @@ class AddPersonalActivity : AppCompatActivity() {
         bottomNavigationView.setOnItemSelectedListener  {
             when(it.itemId){
                 R.id.miHome -> startActivity( Intent(this, MainActivity::class.java))
-                R.id.miProfile -> startActivity( Intent(this, AddPersonalActivity::class.java))
+                R.id.miProfile -> startActivity( Intent(this, ViewPersonalActivity::class.java))
+                R.id.fab -> startActivity( Intent(this, MainActivity::class.java))
                 R.id.miSearch -> startActivity( Intent(this, MainActivity::class.java))
                 R.id.miSettings -> startActivity( Intent(this, MainActivity::class.java))
             }
@@ -71,10 +69,14 @@ class AddPersonalActivity : AppCompatActivity() {
                 }
             }
         }
+        //back button
+        binding.backBtn.setOnClickListener{
+            startActivity( Intent(this, ViewPersonalActivity::class.java))
+        }
     }
 
     private fun  uploadProfilePic(){
-        imageUri = Uri.parse("android.resource://$packageName/${R.drawable.ic_person}")
+        imageUri = Uri.parse("android.resource://$packageName/${R.drawable.banana}")
         storageReference = FirebaseStorage.getInstance().getReference("Users/"+ firebaseAuth.currentUser?.uid)
         storageReference.putFile(imageUri).addOnSuccessListener{
 
