@@ -44,11 +44,9 @@ class AddPersonalActivity : AppCompatActivity() {
             }
             true
         }
-
         //ActivityAddPersonal
         firebaseAuth = FirebaseAuth.getInstance()
         val uid = firebaseAuth.currentUser?.uid
-        Log.i("test2",firebaseAuth.currentUser?.uid.toString())
         databaseReference = FirebaseDatabase.getInstance().getReference("Users")
         binding.saveBtn.setOnClickListener {
 
@@ -77,7 +75,7 @@ class AddPersonalActivity : AppCompatActivity() {
 
     private fun  uploadProfilePic(){
         imageUri = Uri.parse("android.resource://$packageName/${R.drawable.ic_person}")
-        storageReference = FirebaseStorage.getInstance().getReference("Users/"+ FirebaseAuth.getInstance().uid)
+        storageReference = FirebaseStorage.getInstance().getReference("Users/"+ firebaseAuth.currentUser?.uid)
         storageReference.putFile(imageUri).addOnSuccessListener{
 
             hideProgressBar()
