@@ -32,6 +32,7 @@ class AddPersonalActivity : AppCompatActivity() {
         setContentView(binding.root)
         bottomNavigationView.background = null
         bottomNavigationView.menu[2].isEnabled = false
+        bottomNavigationView.selectedItemId = R.id.miProfile
         bottomNavigationView.setOnItemSelectedListener  {
             when(it.itemId){
                 R.id.miHome -> startActivity( Intent(this, MainActivity::class.java))

@@ -18,6 +18,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         bottomNavigationView.background = null
         bottomNavigationView.menu[2].isEnabled = false
+        //bottom navigation//selected
+        bottomNavigationView.selectedItemId = R.id.miHome
         bottomNavigationView.setOnItemSelectedListener  {
                 when(it.itemId){
                     R.id.miHome -> startActivity( Intent(this, MainActivity::class.java))
