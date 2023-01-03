@@ -24,11 +24,13 @@ class MainActivity : AppCompatActivity() {
                 when(it.itemId){
                     R.id.miHome -> startActivity( Intent(this, MainActivity::class.java))
                     R.id.miProfile -> startActivity( Intent(this, ViewPersonalActivity::class.java))
-                    R.id.fab -> startActivity( Intent(this, MainActivity::class.java))
                     R.id.miSearch -> startActivity( Intent(this, MainActivity::class.java))
                     R.id.miSettings -> startActivity( Intent(this, MainActivity::class.java))
                 }
             true
+        }
+        fab.setOnClickListener{
+            startActivity( Intent(this, AddPhotoActivity::class.java))
         }
     }
 
