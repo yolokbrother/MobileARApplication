@@ -39,5 +39,10 @@ class AddPhotoActivity : AppCompatActivity() {
             startActivity(Intent(this, CameraActivity::class.java))
 
         }
+
+        btnUploadPhoto.setOnClickListener{
+            startActivity(Intent(this, UploadPhotoActivity::class.java))
+
+        }
     }
 }

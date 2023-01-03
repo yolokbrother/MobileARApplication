@@ -41,6 +41,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/coordinatorLayout" />
 
+    <Button
+        android:id="@+id/btnUploadPhoto"
+        android:layout_width="159dp"
+        android:layout_height="78dp"
+        android:layout_marginTop="100dp"
+        android:drawableLeft="@drawable/ic_upload"
+        android:text="Upload Photo"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/coordinatorLayout" />
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
