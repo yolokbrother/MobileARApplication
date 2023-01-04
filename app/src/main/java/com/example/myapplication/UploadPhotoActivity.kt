@@ -49,7 +49,7 @@ class UploadPhotoActivity : AppCompatActivity() {
         } else {
             uploadFile()
         }}
-        btnShowUpload.setOnClickListener(View.OnClickListener { })
+        btnShowUpload.setOnClickListener{startActivity( Intent(this, ImageActivity::class.java))}
     }
 
     //return File Extension
