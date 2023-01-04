@@ -15,7 +15,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.myapplication.Constants.REQUIRED_PERMISSIONS
 import com.example.myapplication.Constants.TAG
-import com.example.myapplication.databinding.ActivityAddPersonalBinding
 import com.example.myapplication.databinding.ActivityCameraBinding
 import java.io.File
 import java.text.SimpleDateFormat
