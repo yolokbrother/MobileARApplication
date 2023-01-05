@@ -6,12 +6,12 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.databinding.ActivityUploadPhotoBinding
-import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -75,11 +75,10 @@ class UploadPhotoActivity : AppCompatActivity() {
 //                    val uploadId = mDatabaseRef!!.push().key
 //                    mDatabaseRef!!.child((uploadId)!!).setValue(upload)
                     //uri not found fix with com.examples....
-                    val urlTask: Task<Uri> = taskSnapshot.storage.downloadUrl
-                    var downloadUrl: Uri? = null
-                    while (!urlTask.isSuccessful){
-                        downloadUrl = urlTask.result
-                    }
+                    val urlTask = taskSnapshot.storage.downloadUrl
+                    while (!urlTask.isSuccessful);
+                    val downloadUrl = urlTask.result
+                    Log.i("CheckingUri",downloadUrl.toString())
                     val upload = Upload(
                         edit_text_file_name.text.toString().trim(),
                         downloadUrl.toString(),
