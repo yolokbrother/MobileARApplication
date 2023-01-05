@@ -2,13 +2,9 @@ package com.example.myapplication
 
 import android.os.Bundle
 import android.view.View
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myapplication.ImageAdapter
-import com.example.myapplication.R
-import com.example.myapplication.Upload
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_image.*
 import java.util.ArrayList
@@ -38,7 +34,7 @@ class ImageActivity : AppCompatActivity() {
                 }
                 mAdapter = ImageAdapter(this@ImageActivity, mUploads as ArrayList<Upload>)
                 recycler_view.adapter = mAdapter
-                recycler_view.visibility = View.INVISIBLE
+                progress_circle.visibility = View.INVISIBLE
             }
 
             override fun onCancelled(databaseError: DatabaseError) {

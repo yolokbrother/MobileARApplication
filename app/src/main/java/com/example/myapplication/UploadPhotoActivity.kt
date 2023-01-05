@@ -6,13 +6,12 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.view.View
 import android.webkit.MimeTypeMap
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.databinding.ActivityUploadPhotoBinding
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -68,14 +67,26 @@ class UploadPhotoActivity : AppCompatActivity() {
                     Handler(Looper.getMainLooper()).postDelayed({ progress_bar!!.progress = 0 }, 500)
                     Toast.makeText(this@UploadPhotoActivity, "Upload successful", Toast.LENGTH_LONG).show()
 
+//                    val upload = Upload(
+//                        edit_text_file_name!!.text.toString().trim { it <= ' ' },
+//                        taskSnapshot.metadata?.reference?.downloadUrl.toString(),
+//                        firebaseAuth.currentUser?.uid.toString()
+//                    )
+//                    val uploadId = mDatabaseRef!!.push().key
+//                    mDatabaseRef!!.child((uploadId)!!).setValue(upload)
+                    //uri not found fix with com.examples....
+                    val urlTask: Task<Uri> = taskSnapshot.storage.downloadUrl
+                    var downloadUrl: Uri? = null
+                    while (!urlTask.isSuccessful){
+                        downloadUrl = urlTask.result
+                    }
                     val upload = Upload(
-                        edit_text_file_name!!.text.toString().trim { it <= ' ' },
-                        taskSnapshot.metadata?.reference?.downloadUrl.toString(),
+                        edit_text_file_name.text.toString().trim(),
+                        downloadUrl.toString(),
                         firebaseAuth.currentUser?.uid.toString()
                     )
                     val uploadId = mDatabaseRef!!.push().key
-
-                    mDatabaseRef!!.child((uploadId)!!).setValue(upload)
+                    mDatabaseRef!!.child(uploadId!!).setValue(upload)
                 }
                 .addOnFailureListener { e ->
                     Toast.makeText(this@UploadPhotoActivity, e.message, Toast.LENGTH_SHORT).show()

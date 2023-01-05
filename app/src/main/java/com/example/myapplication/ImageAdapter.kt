@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,7 +28,7 @@ class ImageAdapter(private val mContext: Context, uploads: List<Upload>) :
         val uploadCurrent: Upload = mUploads[position]
         holder.textViewName.text = uploadCurrent.name
         Picasso.with(mContext)
-            .load(uploadCurrent.imageUrl)
+            .load(uploadCurrent.imageUrl.toString())
             .placeholder(R.mipmap.ic_launcher)
             .fit()
             .centerCrop()
