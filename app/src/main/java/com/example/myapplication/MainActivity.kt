@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity(), ImageAdapter.OnItemClickListener {
                 when(it.itemId){
                     R.id.miHome -> startActivity( Intent(this, MainActivity::class.java))
                     R.id.miProfile -> startActivity( Intent(this, ViewPersonalActivity::class.java))
-                    R.id.miSearch -> startActivity( Intent(this, MainActivity::class.java))
+                    R.id.miSearch -> startActivity( Intent(this, SearchImageActivity::class.java))
                     R.id.miSettings -> startActivity( Intent(this, MainActivity::class.java))
                 }
             true
