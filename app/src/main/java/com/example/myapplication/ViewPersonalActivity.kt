@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.BitmapFactory
@@ -65,10 +66,11 @@ class ViewPersonalActivity : AppCompatActivity() {
     private fun getUserData() {
         showProgressBar()
         databaseReference.child(uid).addValueEventListener(object :ValueEventListener{
+            @SuppressLint("SetTextI18n")
             override fun onDataChange(snapshot: DataSnapshot) {
                 user = snapshot.getValue(PersonalData::class.java)!!
-                binding.tvFullName.setText(user.firstName + " " + user.lastName)
-                binding.tvBio.setText(user.bio)
+                binding.tvFullName.text = user.firstName + " " + user.lastName
+                binding.tvBio.text = user.bio
                 getUserProfile()
             }
 

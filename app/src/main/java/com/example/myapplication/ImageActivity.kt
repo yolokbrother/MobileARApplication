@@ -39,6 +39,7 @@ class ImageActivity : AppCompatActivity(), ImageAdapter.OnItemClickListener {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
+                //get image information from firebase
                 (mUploads as ArrayList<Upload>).clear();
 
                 for (postSnapshot in dataSnapshot.children) {
@@ -65,9 +66,6 @@ class ImageActivity : AppCompatActivity(), ImageAdapter.OnItemClickListener {
         Toast.makeText(this, "Normal click at position: $position", Toast.LENGTH_SHORT).show()
     }
 
-    override fun onWhatEverClick(position: Int) {
-        Toast.makeText(this, "Whatever click at position: $position", Toast.LENGTH_SHORT).show()
-    }
 
     override fun onDeleteClick(position: Int) {
         val selectedItem = mUploads!![position]
