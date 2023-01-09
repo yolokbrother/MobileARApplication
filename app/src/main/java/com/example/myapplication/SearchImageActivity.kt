@@ -20,23 +20,6 @@ class SearchImageActivity : AppCompatActivity() {
         //bottom navigation
         binding = ActivitySearchImageBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        bottomNavigationView.background = null
-        bottomNavigationView.menu[2].isEnabled = false
-        //bottom navigation//selected
-        bottomNavigationView.selectedItemId = R.id.miHome
-        bottomNavigationView.setOnItemSelectedListener  {
-            when(it.itemId){
-                R.id.miHome -> startActivity( Intent(this, MainActivity::class.java))
-                R.id.miProfile -> startActivity( Intent(this, ViewPersonalActivity::class.java))
-                R.id.miSearch -> startActivity( Intent(this, SearchImageActivity::class.java))
-                R.id.miSettings -> startActivity( Intent(this, MainActivity::class.java))
-            }
-            true
-        }
-
-        fab.setOnClickListener{
-            startActivity( Intent(this, AddPhotoActivity::class.java))
-        }
 
         binding.getImage.setOnClickListener{
             val imageName = binding.etImageId.text.toString()

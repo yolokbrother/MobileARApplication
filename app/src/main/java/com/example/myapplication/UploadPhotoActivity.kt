@@ -60,7 +60,7 @@ class UploadPhotoActivity : AppCompatActivity() {
 
     private fun uploadFile() {
         if (mImageUri != null) {
-            val fileReference = mStorageRef!!.child(System.currentTimeMillis().toString() + "." + getFileExtension(mImageUri!!)
+            val fileReference = mStorageRef!!.child(edit_text_file_name.text.toString().trim() + "." + getFileExtension(mImageUri!!)
             )
             mUploadTask = fileReference.putFile(mImageUri!!)
                 .addOnSuccessListener { taskSnapshot ->
