@@ -1,11 +1,12 @@
 package com.example.myapplication
 
-import com.google.firebase.auth.FirebaseAuth
-
 class Upload {
+
     var name: String? = null
     var imageUrl: String? = null
     var uid: String? = null
+    var mKey: String? = null
+
 
     constructor() {
         //empty constructor needed
@@ -19,5 +20,9 @@ class Upload {
         this.name = name
         this.imageUrl = imageUrl
         this.uid = uid
+    }
+
+    fun setKey(key: String?) {
+        mKey = key;
     }
 }
