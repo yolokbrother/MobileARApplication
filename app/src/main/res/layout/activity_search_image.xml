@@ -16,6 +16,7 @@
         android:text="Search Image"
         android:textAlignment="center"
         android:textColor="@color/black"
+        style="@style/TEXT"
         android:textStyle="bold"
         android:textSize="26sp"/>
     
@@ -30,6 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/etImageId"
+        style="@style/TEXT"
         android:hint="Type image name"/>
 
     <Button
@@ -37,6 +39,7 @@
         android:layout_height="40dp"
         android:id="@+id/getImage"
         android:layout_marginTop="16sp"
+        style="@style/TEXT"
         android:text="Get Image"/>
 
     <Button
@@ -44,6 +47,7 @@
         android:layout_height="40dp"
         android:id="@+id/shareImage"
         android:layout_marginTop="16sp"
+        style="@style/TEXT"
         android:text="Share Image"/>
 
 

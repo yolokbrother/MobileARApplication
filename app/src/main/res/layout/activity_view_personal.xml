@@ -25,6 +25,7 @@
         android:layout_marginTop="26dp"
         android:fontFamily="cursive"
         android:text=""
+        style="@style/TEXT"
         android:textColor="@color/black"
         android:textSize="36dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,6 +41,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvFullName"
         android:textColor="@color/black"
         android:textSize="26dp"
+        style="@style/TEXT"
         android:layout_marginTop="50dp"
         android:layout_marginStart="26dp"/>
 
@@ -48,6 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Update"
+        style="@style/TEXT"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
