@@ -5,10 +5,9 @@ import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.core.view.get
 import com.example.myapplication.databinding.ActivitySearchImageBinding
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_search_image.*
 import java.io.File
 
 class SearchImageActivity : AppCompatActivity() {
@@ -36,6 +35,16 @@ class SearchImageActivity : AppCompatActivity() {
                 Toast.makeText(this,"Failed to retrieve the image", Toast.LENGTH_SHORT).show()
 
             }
+        }
+
+        shareImage.setOnClickListener{
+            val myIntent = Intent(Intent.ACTION_SEND)
+            myIntent.type = "type/palin"
+            val shareBody = "body"
+            val shareSub = "subject"
+            myIntent.putExtra(Intent.EXTRA_SUBJECT,shareBody)
+            myIntent.putExtra(Intent.EXTRA_TEXT,shareSub)
+            startActivity(Intent.createChooser(myIntent,"Share your picture"))
         }
     }
 }

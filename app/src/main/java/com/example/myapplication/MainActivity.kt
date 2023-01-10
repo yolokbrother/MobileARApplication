@@ -2,18 +2,20 @@ package com.example.myapplication
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
-import com.example.myapplication.databinding.ActivityMainBinding
-import com.google.firebase.storage.FirebaseStorage
-import kotlinx.android.synthetic.main.activity_main.*
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.myapplication.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.database.ktx.snapshots
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_image.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity(), ImageAdapter.OnItemClickListener {
@@ -23,7 +25,8 @@ class MainActivity : AppCompatActivity(), ImageAdapter.OnItemClickListener {
     private var mUploads: MutableList<Upload>? = null
     private var mStorage: FirebaseStorage? = null
     private val mDBListener: ValueEventListener? = null
-    private lateinit var firebaseAuth : FirebaseAuth
+    private lateinit var storageReference: StorageReference
+    private lateinit var uid : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,18 +38,18 @@ class MainActivity : AppCompatActivity(), ImageAdapter.OnItemClickListener {
         bottomNavigationView.menu[2].isEnabled = false
         //bottom navigation//selected
         bottomNavigationView.selectedItemId = R.id.miHome
-        bottomNavigationView.setOnItemSelectedListener  {
-                when(it.itemId){
-                    R.id.miHome -> startActivity( Intent(this, MainActivity::class.java))
-                    R.id.miProfile -> startActivity( Intent(this, ViewPersonalActivity::class.java))
-                    R.id.miSearch -> startActivity( Intent(this, SearchImageActivity::class.java))
-                    R.id.miSettings -> startActivity( Intent(this, MainActivity::class.java))
-                }
+        bottomNavigationView.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.miHome -> startActivity(Intent(this, MainActivity::class.java))
+                R.id.miProfile -> startActivity(Intent(this, ViewPersonalActivity::class.java))
+                R.id.miSearch -> startActivity(Intent(this, SearchImageActivity::class.java))
+                R.id.miSettings -> startActivity(Intent(this, MainActivity::class.java))
+            }
             true
         }
 
-        fab.setOnClickListener{
-            startActivity( Intent(this, AddPhotoActivity::class.java))
+        fab.setOnClickListener {
+            startActivity(Intent(this, AddPhotoActivity::class.java))
         }
 
         //grid layout
@@ -68,11 +71,13 @@ class MainActivity : AppCompatActivity(), ImageAdapter.OnItemClickListener {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
+                //get image information from firebase
                 (mUploads as ArrayList<Upload>).clear();
 
                 for (postSnapshot in dataSnapshot.children) {
                     val upload: Upload? = postSnapshot.getValue(Upload::class.java)
                     upload?.setKey(postSnapshot.key)
+
                     if (upload != null) {
                         mUploads!!.add(upload)
                     }
@@ -90,17 +95,27 @@ class MainActivity : AppCompatActivity(), ImageAdapter.OnItemClickListener {
             }
         })
     }
-
-
-
     override fun onItemClick(position: Int) {
-        val selectedItem = mUploads!![position]
-        val selectedName: String? = selectedItem.name
-        Toast.makeText(this, "Photo selected $selectedName", Toast.LENGTH_SHORT).show()
+        val artistId = mUploads?.get(position)?.uid
+        mDatabaseRef = FirebaseDatabase.getInstance().reference.child("Users/$artistId")
+        mDatabaseRef!!.get().addOnSuccessListener {
+            if (it.exists()){
+                val firstName = it.child("firstName").value
+                val lastName = it.child("lastName").value
+                Toast.makeText(this, "Artist Name: $firstName $lastName", Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(this,"User not exist", Toast.LENGTH_SHORT).show()
+            }
+        }.addOnFailureListener{
+            Toast.makeText(this,"Failed", Toast.LENGTH_SHORT).show()
+        }
+
+
     }
 
+
     override fun onDeleteClick(position: Int) {
-        TODO()
+
     }
 
     override fun onDestroy() {
@@ -109,5 +124,4 @@ class MainActivity : AppCompatActivity(), ImageAdapter.OnItemClickListener {
             mDatabaseRef?.removeEventListener(mDBListener)
         }
     }
-
-}
+    }

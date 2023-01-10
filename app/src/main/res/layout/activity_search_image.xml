@@ -34,45 +34,17 @@
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="40dp"
         android:id="@+id/getImage"
-        android:layout_marginTop="26sp"
+        android:layout_marginTop="16sp"
         android:text="Get Image"/>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <Button
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ViewPersonalActivity"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="60dp">
+        android:layout_height="40dp"
+        android:id="@+id/shareImage"
+        android:layout_marginTop="16sp"
+        android:text="Share Image"/>
 
-
-        <com.google.android.material.bottomappbar.BottomAppBar
-            android:id="@+id/bottomAppBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            app:fabCradleMargin="20dp"
-            app:fabCradleRoundedCornerRadius="20dp"
-            app:fabCradleVerticalOffset="10dp">
-
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/bottomNavigationView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="16dp"
-                android:background="@android:color/transparent"
-                app:menu="@menu/bottom_nav_menu" />
-
-        </com.google.android.material.bottomappbar.BottomAppBar>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_add"
-            app:layout_anchor="@id/bottomAppBar" />
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </LinearLayout>

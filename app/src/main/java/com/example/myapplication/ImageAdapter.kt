@@ -106,5 +106,4 @@ class ImageAdapter(private val mContext: Context, uploads: List<Upload>) :
         }
 
 
-
 }
