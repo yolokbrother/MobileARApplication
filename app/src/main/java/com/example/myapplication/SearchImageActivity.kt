@@ -30,7 +30,7 @@ class SearchImageActivity : AppCompatActivity() {
         bottomNavigationView.background = null
         bottomNavigationView.menu[2].isEnabled = false
         //bottom navigation//selected
-        bottomNavigationView.selectedItemId = R.id.miHome
+        bottomNavigationView.selectedItemId = R.id.miSearch
         bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.miHome -> startActivity(Intent(this, MainActivity::class.java))

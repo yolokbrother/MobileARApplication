@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.get
 import com.example.myapplication.databinding.ActivityMainBinding
 import com.example.myapplication.databinding.ActivitySettingBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_setting.*
 import kotlinx.android.synthetic.main.activity_setting.bottomNavigationView
@@ -17,9 +19,12 @@ import kotlinx.android.synthetic.main.activity_setting.fab
 
 class SettingActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySettingBinding
+    private lateinit var firebaseAuth: FirebaseAuth
 
     @SuppressLint("CommitPrefEdits")
     override fun onCreate(savedInstanceState: Bundle?) {
+        //get firebaseAuth
+        firebaseAuth = FirebaseAuth.getInstance()
         //bottom navigation
         super.onCreate(savedInstanceState)
         binding = ActivitySettingBinding.inflate(layoutInflater)
@@ -27,7 +32,7 @@ class SettingActivity : AppCompatActivity() {
         bottomNavigationView.background = null
         bottomNavigationView.menu[2].isEnabled = false
         //bottom navigation//selected
-        bottomNavigationView.selectedItemId = R.id.miHome
+        bottomNavigationView.selectedItemId = R.id.miSettings
         bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.miHome -> startActivity(Intent(this, MainActivity::class.java))
@@ -66,6 +71,12 @@ class SettingActivity : AppCompatActivity() {
                 editor.putBoolean("night",true)
             }
             editor.apply()
+        }
+
+        //logout activity
+        logOut.setOnClickListener{
+            firebaseAuth.signOut()
+            startActivity(Intent(this, SignInActivity::class.java))
         }
     }
 }
