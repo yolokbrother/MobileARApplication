@@ -2,6 +2,8 @@ package com.example.myapplication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.android.volley.*
+import com.android.volley.toolbox.Volley
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -50,5 +52,11 @@ class ViewMapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap.addMarker(MarkerOptions().position(hk2).title("香港藝術學院 導師培訓課程"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(hk2))
 
+        var requestQueue: RequestQueue = Volley.newRequestQueue(this)
+
+
+
     }
+
+
 }
