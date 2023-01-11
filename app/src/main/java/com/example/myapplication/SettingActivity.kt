@@ -78,5 +78,9 @@ class SettingActivity : AppCompatActivity() {
             firebaseAuth.signOut()
             startActivity(Intent(this, SignInActivity::class.java))
         }
+
+        mapdirect.setOnClickListener{
+            startActivity(Intent(this, ViewMapsActivity::class.java))
+        }
     }
 }
