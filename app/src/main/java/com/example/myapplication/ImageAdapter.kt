@@ -29,18 +29,12 @@ class ImageAdapter(private val mContext: Context, uploads: List<Upload>) :
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         val uploadCurrent: Upload = mUploads[position]
         holder.textViewName.text = uploadCurrent.name
-
-        //get uid
-        firebaseAuth = FirebaseAuth.getInstance()
-
-        if(uploadCurrent.uid == firebaseAuth.currentUser?.uid.toString()){
             Picasso.with(mContext)
                 .load(uploadCurrent.imageUrl.toString())
                 .placeholder(R.mipmap.ic_launcher)
                 .fit()
                 .centerCrop()
                 .into(holder.imageView)
-        }
 
     }
 
