@@ -1,5 +1,5 @@
 # MobileARApplication
-Mobile AR Application for VT6002CEM
+Mobile ART Application for VT6002CEM
 
 ================================================================================================================================================================
 App Features:
