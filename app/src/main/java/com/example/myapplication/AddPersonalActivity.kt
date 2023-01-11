@@ -78,20 +78,22 @@ class AddPersonalActivity : AppCompatActivity() {
         }
     }
 
-    private fun  uploadProfilePic(){
+    private fun  uploadProfilePic():Boolean{
+        var check = false
         imageUri = Uri.parse("android.resource://$packageName/${R.drawable.banana}")
         storageReference = FirebaseStorage.getInstance().getReference("Users/"+ firebaseAuth.currentUser?.uid)
         storageReference.putFile(imageUri).addOnSuccessListener{
 
             hideProgressBar()
             Toast.makeText(this@AddPersonalActivity,"Profile successfully updated", Toast.LENGTH_SHORT).show()
-
+            check = true
         }.addOnFailureListener{
 
             hideProgressBar()
             Toast.makeText(this@AddPersonalActivity,"Failed to upload the image", Toast.LENGTH_SHORT).show()
-
+            check = false
         }
+        return check
     }
 
     private fun showProgressBar(){

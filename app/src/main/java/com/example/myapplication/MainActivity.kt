@@ -103,11 +103,13 @@ class MainActivity : AppCompatActivity(), ImageAdapter.OnItemClickListener {
                 val firstName = it.child("firstName").value
                 val lastName = it.child("lastName").value
                 Toast.makeText(this, "Artist Name: $firstName $lastName", Toast.LENGTH_SHORT).show()
+
             }else{
                 Toast.makeText(this,"User not exist", Toast.LENGTH_SHORT).show()
             }
         }.addOnFailureListener{
             Toast.makeText(this,"Failed", Toast.LENGTH_SHORT).show()
+
         }
 
 
