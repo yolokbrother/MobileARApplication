@@ -66,12 +66,17 @@ class ViewPersonalActivity : AppCompatActivity() {
     private fun getUserData() {
         showProgressBar()
         databaseReference.child(uid).addValueEventListener(object :ValueEventListener{
+
             @SuppressLint("SetTextI18n")
             override fun onDataChange(snapshot: DataSnapshot) {
-                user = snapshot.getValue(PersonalData::class.java)!!
-                binding.tvFullName.text = user.firstName + " " + user.lastName
-                binding.tvBio.text = user.bio
-                getUserProfile()
+                if(snapshot.exists()){
+                    user = snapshot.getValue(PersonalData::class.java)!!
+                    binding.tvFullName.text = user.firstName + " " + user.lastName
+                    binding.tvBio.text = user.bio
+                    getUserProfile()
+                }else{
+                    hideProgressBar()
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
